@@ -16,8 +16,7 @@ public class Main {
         while (reader.hasNext()) {
             content += reader.next(); //reading all lines and concatenating them.
         }
-        FuckingInterpreter i = new FuckingInterpreter(content);
-        i.execute();
-
+        FuckingInterpreter interpreter = new FuckingInterpreter();
+        interpreter.execute(content);
     }
 }

@@ -1,12 +1,8 @@
 import java.util.Scanner;
 
 public class FuckingInterpreter {
-    private String content;
-    FuckingInterpreter(String content) {
-        this.content = content;
+    void execute(String content) {
         System.out.println("[*] Brainfuck program size: "+(content.length()));
-    }
-    void execute() {
         System.out.println("[*] Executing brainfuck. Here is your program output: ");
         // Global state
         int pointer = 0;
