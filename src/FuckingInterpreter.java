@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class FuckingInterpreter {
     private String content;
     FuckingInterpreter(String content) {
@@ -13,16 +15,20 @@ public class FuckingInterpreter {
         // Execution state
         int curr_char = 0;
         int rec_count = 0;
-        l: while (curr_char < content.length()) {
+        loop: while (curr_char < content.length()) {
             char current = content.charAt(curr_char);
             switch (current) {
                 case '>' -> {
+                    if (pointer >= 30000) {
+                        System.out.println("ERROR: Out of bounds at index "  +curr_char);
+                        break loop;
+                    }
                     pointer++;
                 }
                 case '<' -> {
                     if (pointer == 0) {
-                        System.out.println("Out of bonds at index "  +curr_char);
-                        break l;
+                        System.out.println("ERROR: Out of bounds at index "  +curr_char);
+                        break loop;
                     }
                     pointer--;
                 }
@@ -38,7 +44,14 @@ public class FuckingInterpreter {
 
                 }
                 case ',' -> {
-                    table[pointer] = 4;
+                    Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+                    String letter = "too long :D";
+                    while (letter.length() > 1) {
+                        System.out.print("Your program is asking for a char at index "+curr_char+" (max 1 char): ");
+                        letter = myObj.nextLine();  // Read user input
+
+                    }
+                    table[pointer] = (int) letter.charAt(0);
                 }
                 case '[' -> {
                     rec_count ++;
@@ -66,7 +79,7 @@ public class FuckingInterpreter {
                 }
                 default -> {
                     System.out.println("Error at pointer: "+curr_char+" because "+content.charAt(curr_char)+" is not valid brainfuck.");
-                    break l;
+                    break loop;
                 }
             }
             curr_char ++;
